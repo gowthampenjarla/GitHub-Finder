@@ -1,0 +1,22 @@
+<mat-card class="example-card card">
+  <mat-card-header>
+    <mat-card-title>Search GitHub User</mat-card-title>
+    <mat-card-subtitle>Serch user for Profile and Repos</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-form-field class="example-form-field">
+      <input matInput type="text" placeholder="User Name" [(ngModel)]="userName" style="margin-bottom: 1px;" required>
+      <button mat-button *ngIf="userName" matSuffix mat-icon-button aria-label="Clear" (click)="userName=''"
+        matTooltip="Clear">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <button mat-raised-button color="primary" style="margin-left: 5%;" [disabled]="!this.userName" matTooltip="Search"
+      (click)="onSubmit()">Search</button>
+  </mat-card-content>
+</mat-card>
+<div *ngIf="Spinner" id="spinnerBack">
+  <mat-progress-spinner [diameter]="70" mode="indeterminate"
+    style="display: block;position: absolute; top: 50%; right: 50%;"></mat-progress-spinner>
+</div>
+<app-profile-data [profile]="profile" [showProfile]="showProfile"></app-profile-data>

@@ -1,0 +1,37 @@
+<div *ngIf="showProfile.profile">
+  <mat-card class="card1">
+    <mat-card-header>
+      <mat-card-title>Profile</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-grid-list cols="3" rowHeight="60px">
+        <mat-grid-tile colspan="1" rowspan="5">
+          <img src={{profile.avatar_url}} alt="" class="img-fluid img">
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2" rowspan="5" class="text-align-left">
+          <mat-list>
+            <mat-list-item>
+              <mat-chip-list>
+                <mat-chip>Public Repos: {{profile.public_repos}}</mat-chip>
+                <mat-chip color="primary" selected>Public Gists: {{profile.public_gists}}</mat-chip>
+                <mat-chip color="accent" selected>Followers: {{profile.followers}}</mat-chip>
+                <mat-chip color="warn" selected>Following: {{profile.following}}</mat-chip>
+              </mat-chip-list>
+            </mat-list-item>
+            <mat-list-item>Login ID: {{profile.login}} </mat-list-item>
+            <mat-list-item>Email: {{profile.email}}</mat-list-item>
+            <mat-list-item>Location: {{profile.location}}</mat-list-item>
+            <mat-list-item>Member Since: {{profile.created_at |  date }}</mat-list-item>
+          </mat-list>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1">
+          <button mat-raised-button color="primary" matTooltip="View Profile in GitHub">View Profile</button>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div class="alert alert-danger" *ngIf="showProfile.alert">
+  This is no user with that username in GitHub.
+</div>

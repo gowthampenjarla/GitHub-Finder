@@ -1,0 +1,18 @@
+<mat-card *ngFor="let repo of repoData" class="repo1">
+  <mat-card-content>
+    <mat-grid-list cols="3" rowHeight="33px">
+      <mat-grid-tile colspan="2" rowspan="1" class="mat-title" style="margin-left: 0px;">
+        <a href="{{repo.html_url}}" target="_blank"
+          style="justify-content: left; float: left; text-align: left; margin-left: 0px;">{{repo.name}}</a>
+      </mat-grid-tile>
+      <mat-grid-tile colspan="1" rowspan="1">
+        <mat-chip-list>
+          <mat-chip color="primary" selected>Stars: {{repo.stargazers_count}}</mat-chip>
+          <mat-chip color="accent" selected>Watchers: {{repo.watchers_count}}</mat-chip>
+          <mat-chip color="warn" selected>Forks: {{repo.forks_count}}</mat-chip>
+        </mat-chip-list>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card-content>
+</mat-card>
+<div style="margin-top:500px"></div>

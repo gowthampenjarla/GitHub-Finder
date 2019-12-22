@@ -3,6 +3,8 @@ import { BehaviorSubject } from 'rxjs';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Profile } from "../components/models/Profile";
+import { ProfileDataComponent } from '../components/profile-data/profile-data.component';
+import { Repo } from '../components/models/Repo'
 
 
 @Injectable({
@@ -10,9 +12,11 @@ import { Profile } from "../components/models/Profile";
 })
 export class GithubService {
 
-  client_id: string = '186f4ef3379da8cb2fd6';
-  client_secret: string = '263a075dde6f1ffb8c8822ec12181dbd6eff7460';
-  handleError: any;
+  client_id: string = '**********';
+  client_secret: string = '**********';
+  repos_perPage: number = 5;
+  sort_order: string = 'created: asc'
+
 
   // Using Behavioral Subject
   // public userSource = new BehaviorSubject<Profile>({
@@ -49,9 +53,11 @@ export class GithubService {
 
   getUserProfile(username: string): Observable<Profile> {
     console.log("hitting github with username: " + username);
+    return this.http.get<Profile>(`https://api.github.com/users/${username}?client_id=${this.client_id}&client_secret=${this.client_secret}`);
+  }
 
-    return this.http.get<Profile>(`https://api.github.com/users/${username}?client_id=${this.client_id}&client_secret=${this.client_secret}`)
-
+  getRepoData(username: string): Observable<Repo[]> {
+    return this.http.get<Repo[]>(`https://api.github.com/users/${username}/repos?per_page=${this.repos_perPage}&sort=${this.sort_order}&client_id=${this.client_id}&client_secret=${this.client_secret}`);
   }
 
 }

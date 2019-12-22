@@ -22,6 +22,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FormsModule } from "@angular/forms";
+import { ReposComponent } from './components/repos/repos.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { FormsModule } from "@angular/forms";
     NavbarComponent,
     FooterComponent,
     SearchBoxComponent,
-    ProfileDataComponent
+    ProfileDataComponent,
+    ReposComponent
   ],
   imports: [
     BrowserModule,

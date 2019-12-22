@@ -27,6 +27,7 @@ export class SearchBoxComponent implements OnInit {
   showProfile = {
     profile: false,
     alert: false,
+    repos: false,
   }
   Spinner: boolean = false;
   constructor(private github: GithubService) { }
@@ -39,19 +40,9 @@ export class SearchBoxComponent implements OnInit {
     this.Spinner = true;
     this.github.getUserProfile(this.userName).subscribe((response => {
       console.log(response);
-
       this.Spinner = false
       this.showProfile.profile = true;
-      this.profile.login = response.login;
-      this.profile.avatar_url = response.avatar_url;
-      this.profile.email = response.email;
-      this.profile.html_url = response.html_url;
-      this.profile.following = response.following;
-      this.profile.followers = response.followers;
-      this.profile.location = response.location;
-      this.profile.public_repos = response.public_repos;
-      this.profile.public_gists = response.public_gists;
-      this.profile.created_at = response.created_at;
+      this.profile = response;
     }), err => {
       console.log(err);
       if (err.status === 404) {
@@ -65,5 +56,6 @@ export class SearchBoxComponent implements OnInit {
     this.Spinner = false;
     this.showProfile.profile = false;
     this.showProfile.alert = false;
+    this.showProfile.repos = false;
   }
 }

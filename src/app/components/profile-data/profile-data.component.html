@@ -1,8 +1,8 @@
 <div *ngIf="showProfile.profile">
   <mat-card class="card1">
-    <mat-card-header>
+    <!-- <mat-card-header>
       <mat-card-title>Profile</mat-card-title>
-    </mat-card-header>
+    </mat-card-header> -->
     <mat-card-content>
       <mat-grid-list cols="3" rowHeight="60px">
         <mat-grid-tile colspan="1" rowspan="5">
@@ -25,13 +25,24 @@
           </mat-list>
         </mat-grid-tile>
         <mat-grid-tile colspan="1" rowspan="1">
-          <button mat-raised-button color="primary" matTooltip="View Profile in GitHub">View Profile</button>
+          <a href={{profile.html_url}} target="_blank"><button mat-raised-button color="primary"
+              matTooltip="View Profile in GitHub">View Profile</button></a>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2" rowspan="1">
+          <button mat-raised-button color="primary" matTooltip="Click here to view Repos" (click)="getRepos()"
+            class="button1">View
+            Repos</button>
         </mat-grid-tile>
       </mat-grid-list>
     </mat-card-content>
   </mat-card>
 </div>
-
 <div class="alert alert-danger" *ngIf="showProfile.alert">
   This is no user with that username in GitHub.
 </div>
+<div *ngIf="repoSpinner" id="spinnerBack">
+  <mat-progress-spinner [diameter]="70" mode="indeterminate"
+    style="display: block;position: absolute; top: 50%; right: 50%;"></mat-progress-spinner>
+</div>
+<app-repos [repoData]="repoData" *ngIf="showProfile.repos"></app-repos>
+<div class="last"></div>

@@ -2,7 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { GithubService } from '../../services/github.service'
 import { Profile } from '../models/Profile';
 import { Repo } from '../models/Repo';
-declare var $: any;
+import { map } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-profile-data',
@@ -12,18 +13,14 @@ declare var $: any;
 export class ProfileDataComponent implements OnInit {
   repoData: Repo[];
   repoSpinner: boolean = false;
+  resp: any;
 
   constructor(private github: GithubService) { }
 
   @Input() profile: Profile;
   @Input() showProfile;
 
-  ngOnInit() {
-    // this.github.user.subscribe(response =>
-    //   console.log(response))
-
-    // console.log(this.profile)
-  }
+  ngOnInit() { }
 
   getRepos() {
     this.repoSpinner = true;

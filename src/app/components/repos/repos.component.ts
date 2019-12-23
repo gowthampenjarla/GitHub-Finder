@@ -14,16 +14,11 @@ export class ReposComponent implements OnInit {
   constructor() { }
   ngOnInit() {
 
-    if (!this.repoDisplay) {
+    if (this.repoData.length != 0) {
       this.repoDisplay = true;
       console.log(this.repoData);
-      // this.repoData.forEach(repo => {
-      //   this.userRepo.name = repo.name;
-      //   this.userRepo.html_url = repo.html_url;
-      //   this.userRepo.forks_count = repo.forks_count;
-      //   this.userRepo.stargazers_count = repo.stargazers_count;
-      //   this.userRepo.watchers_count = repo.watchers_count;
-      // });
+    } else {
+      window.alert("This user doesn't have any repositories");
     }
   }
 
